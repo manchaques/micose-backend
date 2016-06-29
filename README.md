@@ -15,7 +15,7 @@ mongod --dbpath ~/data/db &;
 
 Sources: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
-### Intall Elixir
+### Install Elixir
 ```shell
 # Install with hombrew
 brew update;
