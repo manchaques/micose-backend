@@ -22,6 +22,8 @@ brew update;
 brew install elixir;
 ```
 
+Sources: http://elixir-lang.org/install.html#mac-os-x
+
 ### Launch app
 ```shell
 # Get dependencies
