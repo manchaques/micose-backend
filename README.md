@@ -30,4 +30,13 @@ Sources: http://elixir-lang.org/install.html#mac-os-x
 mix deps.get
 # Launch test
 mix test
+# Launche backend
+mix phoenix.server
+```
+
+## Tips and tricks
+### Generate a new resource
+```shell
+# Ex: generate a Book resource
+mix phoenix.gen.json Book books title:string owner:string borrower:string
 ```
