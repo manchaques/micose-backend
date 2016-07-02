@@ -13,6 +13,15 @@ sudo gem install lunchy
 cp /usr/local/Cellar/postgresql/9.5.3/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
 # Launch PostgreSQL with Lunchy 
 lunchy start postgres
+
+# Create Phoenix dev config
+psql postgres
+> CREATE USER postgres;
+> ALTER USER postgres PASSWORD 'postgres';
+> ALTER USER postgres WITH SUPERUSER;
+
+# Create database
+mix ecto.create
 ```
 
 Sources: https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/
@@ -41,4 +50,9 @@ mix phoenix.server
 ```shell
 # Ex: generate a Book resource
 mix phoenix.gen.json Book books title:string owner:string borrower:string
+```
+
+### Update the database schema
+```shell
+mix ecto.migrate
 ```
