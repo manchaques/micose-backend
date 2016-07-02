@@ -61,3 +61,8 @@ mix ecto.migrate
 ```shell
 mix admin.gen.resource Book
 ```
+
+### Make a release
+```shell
+MIX_ENV=prod mix do phoenix.digest, compile, release
+```
