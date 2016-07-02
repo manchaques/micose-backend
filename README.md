@@ -56,3 +56,8 @@ mix phoenix.gen.json Book books title:string owner:string borrower:string
 ```shell
 mix ecto.migrate
 ```
+
+### Add a model in ExAdmin
+```shell
+mix admin.gen.resource Book
+```
