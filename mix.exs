@@ -19,7 +19,7 @@ defmodule MicoseBackend.Mixfile do
   def application do
     [mod: {MicoseBackend, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :ex_admin, :phoenix_ecto, :postgrex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,7 +36,8 @@ defmodule MicoseBackend.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ex_admin, github: "smpallen99/ex_admin"}]
+     {:ex_admin, github: "smpallen99/ex_admin"},
+     {:exrm, "~> 1.0.3"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
