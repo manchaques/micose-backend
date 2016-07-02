@@ -4,7 +4,7 @@ defmodule MicoseBackend.Book do
   schema "books" do
     field :title, :string
     field :owner, :string
-    field :borrower, :string
+    field :borrower, :string, null: true
 
     timestamps
   end

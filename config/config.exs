@@ -27,3 +27,14 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: false,
   binary_id: true
+
+# Configure ex_admin
+config :ex_admin,
+  repo: MicoseBackend.Repo,
+  module: MicoseBackend,
+  modules: [
+     MicoseBackend.ExAdmin.Dashboard,
+     MicoseBackend.ExAdmin.Book
+  ]
+config :xain, :after_callback, {Phoenix.HTML, :raw}
+

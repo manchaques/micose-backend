@@ -34,7 +34,8 @@ defmodule MicoseBackend.Mixfile do
      {:mongodb_ecto, ">= 0.0.0"},
      {:phoenix_ecto, "~> 2.0"},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:ex_admin, "~> 0.7"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
