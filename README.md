@@ -2,18 +2,20 @@
 
 # Contributing
 ## Mac OS X
-### Install Mongo
+### Install PostgreSQL
 ```shell
 # Install with homebrew
 brew update;
-brew install mongodb --with-openssl;
-# Create database directory
-mkdir -p ~/data/db;
-# Launch 
-mongod --dbpath ~/data/db &;
+brew install postgresql;
+# Install Lunchy
+sudo gem install lunchy
+# Add Postgresql to LaunchAgents
+cp /usr/local/Cellar/postgresql/9.5.3/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
+# Launch PostgreSQL with Lunchy 
+lunchy start postgres
 ```
 
-Sources: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+Sources: https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/
 
 ### Install Elixir
 ```shell
