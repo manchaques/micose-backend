@@ -9,6 +9,9 @@ defmodule MicoseBackend.Book do
     timestamps()
   end
 
+  @required_fields ~w(title owner)
+  @optional_field ~w(borrower)
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
