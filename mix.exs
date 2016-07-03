@@ -19,7 +19,7 @@ defmodule MicoseBackend.Mixfile do
   def application do
     [mod: {MicoseBackend, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_haml, :ex_aws, :httpoison, :ex_admin, :ex_queb,
+                    :ex_admin,
                     :phoenix_ecto, :postgrex]]
   end
 
