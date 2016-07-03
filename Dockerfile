@@ -1,12 +1,11 @@
-FROM trenpixster/elixir:1.2.5
+FROM elixir:1.2.6
 MAINTAINER Manchaques
 
 ENV MIX_HOST 4000
 EXPOSE $MIX_HOST
 
 VOLUME /app
-WORKDIR /app
+WORKDIR /app/
 
-ENTRYPOINT ["./micose_backend.sh"]
-CMD ["foreground"]
+CMD ["./run_prod.sh"]
 # Start up in 'foreground' mode by default so the container stays running
