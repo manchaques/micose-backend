@@ -19,7 +19,8 @@ defmodule MicoseBackend.Mixfile do
   def application do
     [mod: {MicoseBackend, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :ex_admin, :phoenix_ecto, :postgrex]]
+                    :phoenix_haml, :ex_aws, :httpoison, :ex_admin, :ex_queb,
+                    :phoenix_ecto, :postgrex]]
   end
 
   # Specifies which paths to compile per environment.

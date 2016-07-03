@@ -15,6 +15,13 @@ erl_crash.dump
 # variables.
 /config/prod.secret.exs
 
+# Ignore releases
+rel/
+
+# ExAdmin
+!priv/static/themes
+
+# Intellij
 .idea/
 *.iml
-!priv/static/themes
+
