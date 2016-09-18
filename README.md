@@ -54,6 +54,7 @@ mix phoenix.gen.json Book books title:string owner:string borrower:string
 
 ### Update the database schema
 ```shell
+mix ecto.gen.migration a_migration_title
 mix ecto.migrate
 ```
 
