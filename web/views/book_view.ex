@@ -13,6 +13,8 @@ defmodule MicoseBackend.BookView do
     %{id: book.id,
       title: book.title,
       owner: book.owner,
-      borrower: book.borrower}
+      borrower: book.borrower,
+      creationDate: book.inserted_at,
+      updateDate: book.updated_at}
   end
 end
