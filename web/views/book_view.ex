@@ -12,6 +12,7 @@ defmodule MicoseBackend.BookView do
   def render("book.json", %{book: book}) do
     %{id: book.id,
       title: book.title,
+      subtitle: book.title,
       owner: book.owner,
       borrower: book.borrower,
       creationDate: book.inserted_at,
