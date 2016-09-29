@@ -17,6 +17,7 @@ defmodule MicoseBackend.Router do
     pipe_through :api
 
     resources "/books", BookController, except: [:new, :edit]
+    resources "/users", UserController, except: [:new, :edit]
   end
 
   scope "/admin", ExAdmin do

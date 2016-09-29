@@ -4,13 +4,13 @@ defmodule MicoseBackend.Book do
   schema "books" do
     field :title, :string
     field :subtitle, :string
-    field :owner, :string
+    belongs_to :owner, MicoseBackend.User, foreign_key: :owner_id
     field :borrower, :string
 
     timestamps()
   end
 
-  @required_fields ~w(title owner)
+  @required_fields ~w(title owner_id)
   @optional_field ~w(subtitle borrower)
 
   @doc """
@@ -18,7 +18,7 @@ defmodule MicoseBackend.Book do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :subtitle, :owner, :borrower])
-    |> validate_required([:title, :owner])
+    |> cast(params, [:title, :subtitle, :owner_id, :borrower])
+    |> validate_required([:title, :owner_id])
   end
 end

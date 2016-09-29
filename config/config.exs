@@ -28,7 +28,8 @@ config :ex_admin,
   module: MicoseBackend,
   modules: [
     MicoseBackend.ExAdmin.Dashboard,
-    MicoseBackend.ExAdmin.Book
+    MicoseBackend.ExAdmin.Book,
+    MicoseBackend.ExAdmin.User
   ]
 
 # Import environment specific config. This must remain at the bottom

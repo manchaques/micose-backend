@@ -1,22 +1,22 @@
-defmodule MicoseBackend.BookController do
+defmodule MicoseBackend.UserController do
   use MicoseBackend.Web, :controller
 
-  alias MicoseBackend.Book
+  alias MicoseBackend.User
 
   def index(conn, _params) do
-    books = Book |> Repo.all |> Repo.preload(:owner)
-    render(conn, "index.json", books: books)
+    users = User |> Repo.all |> Repo.preload([:books])
+    render(conn, "index.json", users: users)
   end
 
-  def create(conn, %{"book" => book_params}) do
-    changeset = Book.changeset(%Book{}, book_params)
+  def create(conn, %{"user" => user_params}) do
+    changeset = User.changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
-      {:ok, book} ->
+      {:ok, user} ->
         conn
         |> put_status(:created)
-        |> put_resp_header("location", book_path(conn, :show, book))
-        |> render("show.json", book: book)
+        |> put_resp_header("location", user_path(conn, :show, user))
+        |> render("show.json", user: user)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -25,17 +25,17 @@ defmodule MicoseBackend.BookController do
   end
 
   def show(conn, %{"id" => id}) do
-    book = Repo.get!(Book, id) |> Repo.preload(:owner)
-    render(conn, "show.json", book: book)
+    user = Repo.get!(User, id) |> Repo.preload(:books)
+    render(conn, "show.json", user: user)
   end
 
-  def update(conn, %{"id" => id, "book" => book_params}) do
-    book = Repo.get!(Book, id)
-    changeset = Book.changeset(book, book_params)
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = Repo.get!(User, id)
+    changeset = User.changeset(user, user_params)
 
     case Repo.update(changeset) do
-      {:ok, book} ->
-        render(conn, "show.json", book: book)
+      {:ok, user} ->
+        render(conn, "show.json", user: user)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -44,11 +44,11 @@ defmodule MicoseBackend.BookController do
   end
 
   def delete(conn, %{"id" => id}) do
-    book = Repo.get!(Book, id)
+    user = Repo.get!(User, id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
-    Repo.delete!(book)
+    Repo.delete!(user)
 
     send_resp(conn, :no_content, "")
   end

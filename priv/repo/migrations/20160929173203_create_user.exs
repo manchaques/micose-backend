@@ -1,0 +1,12 @@
+defmodule MicoseBackend.Repo.Migrations.CreateUser do
+  use Ecto.Migration
+
+  def change do
+    create table(:users) do
+      add :pseudo, :string
+
+      timestamps()
+    end
+
+  end
+end
