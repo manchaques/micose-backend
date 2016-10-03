@@ -4,6 +4,7 @@ defmodule MicoseBackend.User do
   schema "users" do
     field :pseudo, :string
     has_many :books, MicoseBackend.Book, foreign_key: :owner_id, on_delete: :delete_all
+    has_one :borrowed_book, MicoseBackend.Book, foreign_key: :borrower_id
 
     timestamps()
   end

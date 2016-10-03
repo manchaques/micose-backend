@@ -14,7 +14,7 @@ defmodule MicoseBackend.BookView do
       title: book.title,
       subtitle: book.subtitle,
       owner: MicoseBackend.UserView.render("user.json", user: book.owner),
-      borrower: book.borrower,
+      borrower: MicoseBackend.UserView.render("user.json", user: book.borrower),
       creationDate: book.inserted_at,
       updateDate: book.updated_at}
   end
