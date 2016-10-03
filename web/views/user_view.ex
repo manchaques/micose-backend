@@ -9,6 +9,10 @@ defmodule MicoseBackend.UserView do
     %{data: render_one(user, MicoseBackend.UserView, "user.json")}
   end
 
+  def render("user.json", %{user: nil}) do
+    nil
+  end
+
   def render("user.json", %{user: user}) do
     %{id: user.id,
       pseudo: user.pseudo}
