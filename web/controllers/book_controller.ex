@@ -4,7 +4,7 @@ defmodule MicoseBackend.BookController do
   alias MicoseBackend.Book
 
   def index(conn, _params) do
-    books = Book |> Repo.all |> Repo.preload(:owner) |> Repo.preload([:borrower])
+    books = Book |> Repo.all |> Repo.preload(:owner) |> Repo.preload([:borrower]) |> Repo.preload([:classification])
     render(conn, "index.json", books: books)
   end
 
@@ -25,7 +25,7 @@ defmodule MicoseBackend.BookController do
   end
 
   def show(conn, %{"id" => id}) do
-    book = Repo.get!(Book, id) |> Repo.preload(:owner) |> Repo.preload([:borrower])
+    book = Repo.get!(Book, id) |> Repo.preload(:owner) |> Repo.preload([:borrower]) |> Repo.preload([:classification])
     render(conn, "show.json", book: book)
   end
 

@@ -9,6 +9,10 @@ defmodule MicoseBackend.ClassificationView do
     %{data: render_one(classification, MicoseBackend.ClassificationView, "classification.json")}
   end
 
+  def render("classification.json", %{user: nil}) do
+    nil
+  end
+
   def render("classification.json", %{classification: classification}) do
     %{id: classification.id,
       name: classification.name}

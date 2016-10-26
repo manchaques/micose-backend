@@ -3,7 +3,7 @@ defmodule MicoseBackend.Classification do
 
   schema "classifications" do
     field :name, :string
-
+    has_many :classified_books, MicoseBackend.Book, foreign_key: :classification_id, on_delete: :delete_all
     timestamps()
   end
 

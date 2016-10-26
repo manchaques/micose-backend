@@ -4,7 +4,7 @@ defmodule MicoseBackend.ClassificationController do
   alias MicoseBackend.Classification
 
   def index(conn, _params) do
-    classifications = Repo.all(Classification)
+    classifications = Classification |> Repo.all |> Repo.preload(:classified_books)
     render(conn, "index.json", classifications: classifications)
   end
 
@@ -25,7 +25,7 @@ defmodule MicoseBackend.ClassificationController do
   end
 
   def show(conn, %{"id" => id}) do
-    classification = Repo.get!(Classification, id)
+    classification = Repo.get!(Classification, id) |> Repo.preload(:classified_books)
     render(conn, "show.json", classification: classification)
   end
 
