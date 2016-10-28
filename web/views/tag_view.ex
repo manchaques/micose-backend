@@ -13,4 +13,9 @@ defmodule MicoseBackend.TagView do
     %{id: tag.id,
       name: tag.name}
   end
+
+  def render("tagName.json", %{tag: tag}) do
+      %{name: tag.name}
+    end
+
 end

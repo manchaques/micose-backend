@@ -25,7 +25,7 @@ defmodule MicoseBackend.BookController do
   end
 
   def show(conn, %{"id" => id}) do
-    book = Repo.get!(Book, id) |> Repo.preload(:owner) |> Repo.preload([:borrower]) |> Repo.preload([:classification])
+    book = Repo.get!(Book, id) |> Repo.preload(:owner) |> Repo.preload([:borrower]) |> Repo.preload([:classification]) |> Repo.preload([:tags])
     render(conn, "show.json", book: book)
   end
 
