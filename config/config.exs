@@ -30,6 +30,7 @@ config :ex_admin,
     MicoseBackend.ExAdmin.Dashboard,
     MicoseBackend.ExAdmin.Book,
     MicoseBackend.ExAdmin.Classification,
+    MicoseBackend.ExAdmin.Tag,
     MicoseBackend.ExAdmin.User
   ]
 

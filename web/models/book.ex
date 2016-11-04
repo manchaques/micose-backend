@@ -7,8 +7,8 @@ defmodule MicoseBackend.Book do
     belongs_to :owner, MicoseBackend.User, foreign_key: :owner_id
     belongs_to :borrower, MicoseBackend.User, foreign_key: :borrower_id
     belongs_to :classification, MicoseBackend.Classification, foreign_key: :classification_id
+    many_to_many :tags, MicoseBackend.Tag, join_through: "books_tags"
     field :cover_url, :string
-
     timestamps()
   end
 
