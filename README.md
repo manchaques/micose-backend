@@ -39,10 +39,20 @@ Sources: http://elixir-lang.org/install.html#mac-os-x
 ```shell
 # Get dependencies
 mix deps.get
-# Launch test
-mix test
-# Launche backend
+
+# Launch backend
 mix phoenix.server
+```
+
+### Launch test
+```shell
+# Only tests
+mix test
+
+# Tests and coverage
+mix coveralls
+# or with html report generated in cover/excoveralls.html
+mix corveralls.html 
 ```
 
 ## Tips and tricks

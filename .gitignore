@@ -26,3 +26,6 @@ priv/static/
 .idea/
 *.iml
 
+# Coveralls
+cover/
+

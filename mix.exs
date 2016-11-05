@@ -10,7 +10,9 @@ defmodule MicoseBackend.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],]
   end
 
   # Configuration for the OTP application.
@@ -39,7 +41,9 @@ defmodule MicoseBackend.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ex_admin, github: "smpallen99/ex_admin"},
      {:exrm, "~> 1.0.3"},
-     {:junit_formatter, github: "PierrePIRONIN/junit-formatter"}]
+     {:junit_formatter, github: "PierrePIRONIN/junit-formatter", only: :test},
+     {:excoveralls, "~> 0.5", only: :test}
+     ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

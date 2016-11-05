@@ -1,0 +1,16 @@
+{
+  "skip_files": [
+    "_build",
+    "config",
+    "deps",
+    "lib",
+    "priv",
+    "test",
+    "web/admin",
+    "web/channels",
+    "web/gettext.ex",
+    "web/web.ex",
+    "web/router.ex",
+    "mix.exs"
+  ]
+}
