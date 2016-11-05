@@ -6,6 +6,7 @@
     "lib",
     "priv",
     "test",
+    "spec",
     "web/admin",
     "web/channels",
     "web/gettext.ex",
