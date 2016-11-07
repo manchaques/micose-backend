@@ -42,4 +42,6 @@
   "scrivener": {:hex, :scrivener, "2.1.1", "eb52c8b7d283e8999edd6fd50d872ab870669d1f4504134841d0845af11b5ef3", [:mix], []},
   "scrivener_ecto": {:git, "https://github.com/drewolson/scrivener_ecto.git", "df2c5720f763b002c48be1f132fbaaa594cfbeae", []},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.1", "28a4d65b7f59893bc2c7de786dec1e1555bd742d336043fe644ae956c3497fbe", [:make, :rebar], []},
+  "test_that_json": {:hex, :test_that_json, "0.5.0", "463a650f04e49e120310b486e210d86419296ca5b531be253697156dd032c870", [:mix], [{:exjsx, "~> 3.2.0", [hex: :exjsx, optional: false]}]},
+  "test_that_json_espec": {:hex, :test_that_json_espec, "0.6.0", "109ee9b71589860aae3369f04e1274c3f95dce367a36a72975abaad213e82ebc", [:mix], [{:espec, "~> 1.0", [hex: :espec, optional: false]}, {:test_that_json, "~> 0.5.0", [hex: :test_that_json, optional: false]}]},
   "xain": {:hex, :xain, "0.6.0", "5b61cfe3ffc17904759ee30a699f9e0b1aefd943e996ee4cafea76e5b2f59e3a", [:mix], []}}

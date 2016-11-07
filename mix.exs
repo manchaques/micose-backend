@@ -45,6 +45,7 @@ defmodule MicoseBackend.Mixfile do
      {:exrm, "~> 1.0.3"},
 
      {:espec_phoenix, "~> 0.6.1", only: :test, app: false},
+     {:test_that_json_espec, "~> 0.6.0", only: :test},
      {:junit_formatter, github: "PierrePIRONIN/junit-formatter", only: :test},
      {:excoveralls, "~> 0.5", only: :test}
      ]

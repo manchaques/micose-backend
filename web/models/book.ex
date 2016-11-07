@@ -20,7 +20,7 @@ defmodule MicoseBackend.Book do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :subtitle, :owner_id, :borrower_id, :cover_url, :classification_id])
+    |> cast(params, [:title, :subtitle, :owner_id, :borrower_id, :classification_id, :cover_url])
     |> validate_required([:title, :owner_id])
   end
 end
