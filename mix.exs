@@ -39,7 +39,7 @@ defmodule MicoseBackend.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ex_admin, github: "smpallen99/ex_admin"},
      {:exrm, "~> 1.0.3"},
-     {:junit_formatter, github: "PierrePIRONIN/junit-formatter"}]
+     {:junit_formatter, github: "victorolinasc/junit-formatter"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
