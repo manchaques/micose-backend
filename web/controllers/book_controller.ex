@@ -33,6 +33,19 @@ defmodule MicoseBackend.BookController do
     render(conn, "show.json", book: book)
   end
 
+  def find(conn, _params) do
+    # Create a query
+    # query = from p in Book,
+    #          join: t in Tag, where: c.post_id == p.id
+
+    # Extend the query
+    # query = from [p, c] in query,
+    #          select: {p.title, c.body}
+
+    books = Book |> Repo.all |> _preloadAll
+    render(conn, "index.json", books: books)
+  end
+
   def update(conn, %{"id" => id, "book" => book_params}) do
     book = Repo.get!(Book, id)
     changeset = Book.changeset(book, book_params)

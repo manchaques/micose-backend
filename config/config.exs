@@ -29,6 +29,7 @@ config :ex_admin,
   modules: [
     MicoseBackend.ExAdmin.Dashboard,
     MicoseBackend.ExAdmin.Book,
+    MicoseBackend.ExAdmin.Books_tags,
     MicoseBackend.ExAdmin.Classification,
     MicoseBackend.ExAdmin.Tag,
     MicoseBackend.ExAdmin.User

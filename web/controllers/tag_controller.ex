@@ -3,8 +3,13 @@ defmodule MicoseBackend.TagController do
 
   alias MicoseBackend.Tag
 
+  def _preloadAll(tag) do
+      Repo.preload(tag, [:books])
+    end
+
   def index(conn, _params) do
-    tags = Repo.all(Tag)
+    tags = Tag |> Repo.all |> _preloadAll
+    # tags = Repo.all(Tag)
     render(conn, "index.json", tags: tags)
   end
 
@@ -25,7 +30,7 @@ defmodule MicoseBackend.TagController do
   end
 
   def show(conn, %{"id" => id}) do
-    tag = Repo.get!(Tag, id)
+    tag = Repo.get!(Tag, id) |> _preloadAll
     render(conn, "show.json", tag: tag)
   end
 

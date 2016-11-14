@@ -11,11 +11,13 @@ defmodule MicoseBackend.TagView do
 
   def render("tag.json", %{tag: tag}) do
     %{id: tag.id,
-      name: tag.name}
+      name: tag.name,
+      books: render_many(tag.books, MicoseBackend.BookView, "forTag.json")
+    }
   end
 
   def render("tagName.json", %{tag: tag}) do
-      %{name: tag.name}
-    end
+    %{name: tag.name}
+  end
 
 end

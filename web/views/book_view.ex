@@ -22,6 +22,11 @@ defmodule MicoseBackend.BookView do
       updateDate: book.updated_at}
   end
 
+  def render("forTag.json", %{book: book}) do
+    %{title: book.title,
+      subtitle: book.subtitle}
+  end
+
     def render("forOwner.json", %{book: book}) do
       %{id: book.id,
         title: book.title,

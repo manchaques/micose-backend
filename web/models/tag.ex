@@ -3,7 +3,8 @@ defmodule MicoseBackend.Tag do
 
   schema "tags" do
     field :name, :string
-
+    # For test only, probably useless to link books and tags from Tags
+    many_to_many :books, MicoseBackend.Book, join_through: MicoseBackend.Books_tags
     timestamps()
   end
 
