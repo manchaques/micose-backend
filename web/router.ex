@@ -19,6 +19,7 @@ defmodule MicoseBackend.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/classifications", ClassificationController, except: [:new, :edit]
     resources "/tags", TagController, except: [:new, :edit]
+    resources "/communities", CommunityController, except: [:new, :edit]
     get "/book/find", BookController, :find
   end
 
