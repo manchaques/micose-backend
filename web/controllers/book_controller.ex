@@ -3,6 +3,8 @@ defmodule MicoseBackend.BookController do
 
   alias MicoseBackend.Book
 
+  import Ecto.Query, only: [from: 2]
+
   def _preloadAll(book) do
     Repo.preload(book, [:owner, :borrower, :classification, :tags])
   end
@@ -33,16 +35,15 @@ defmodule MicoseBackend.BookController do
     render(conn, "show.json", book: book)
   end
 
-  def find(conn, _params) do
+  def findByTag(conn, %{"tag" => tag}) do
     # Create a query
-    # query = from p in Book,
-    #          join: t in Tag, where: c.post_id == p.id
+    query = from b in Book,
+              join: bt in MicoseBackend.Books_tags, on: bt.book_id == b.id,
+              inner_join: t in MicoseBackend.Tag, on: bt.tag_id == t.id,
+              select: b,
+              where: t.name == ^tag;
 
-    # Extend the query
-    # query = from [p, c] in query,
-    #          select: {p.title, c.body}
-
-    books = Book |> Repo.all |> _preloadAll
+    books = Repo.all(query) |> _preloadAll;
     render(conn, "index.json", books: books)
   end
 
