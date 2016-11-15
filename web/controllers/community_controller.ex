@@ -3,8 +3,12 @@ defmodule MicoseBackend.CommunityController do
 
   alias MicoseBackend.Community
 
+  def _preloadAll(community) do
+    Repo.preload(community, [:users])
+  end
+
   def index(conn, _params) do
-    communities = Repo.all(Community)
+    communities = Community |> Repo.all |> _preloadAll
     render(conn, "index.json", communities: communities)
   end
 
@@ -25,7 +29,7 @@ defmodule MicoseBackend.CommunityController do
   end
 
   def show(conn, %{"id" => id}) do
-    community = Repo.get!(Community, id)
+    community = Repo.get!(Community, id) |> _preloadAll
     render(conn, "show.json", community: community)
   end
 

@@ -4,7 +4,7 @@ defmodule MicoseBackend.UserController do
   alias MicoseBackend.User
 
   def index(conn, _params) do
-    users = User |> Repo.all |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
+    users = User |> Repo.all |> Repo.preload([:communities]) |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
       |> Repo.preload([{:borrowed_books, [:owner, :classification, :tags]}])
     render(conn, "index.json", users: users)
   end
@@ -26,7 +26,7 @@ defmodule MicoseBackend.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id) |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
+    user = Repo.get!(User, id) |> Repo.preload([:communities]) |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
       |> Repo.preload([{:borrowed_books, [:owner, :classification, :tags]}])
     render(conn, "show.json", user: user)
   end

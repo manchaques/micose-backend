@@ -17,7 +17,8 @@ defmodule MicoseBackend.UserView do
     %{id: user.id,
       pseudo: user.pseudo,
       books: render_many(user.books, MicoseBackend.BookView, "forOwner.json"),
-      borrowedBooks: render_many(user.borrowed_books, MicoseBackend.BookView, "forBorrower.json")
+      borrowedBooks: render_many(user.borrowed_books, MicoseBackend.BookView, "forBorrower.json"),
+      communities: render_many(user.communities, MicoseBackend.CommunityView, "community.json")
     }
   end
 

@@ -3,7 +3,7 @@ defmodule MicoseBackend.Community do
 
   schema "communities" do
     field :name, :string
-
+    many_to_many :users, MicoseBackend.User, join_through: MicoseBackend.Users_Communities
     timestamps()
   end
 

@@ -5,7 +5,7 @@ defmodule MicoseBackend.User do
     field :pseudo, :string
     has_many :books, MicoseBackend.Book, foreign_key: :owner_id, on_delete: :delete_all
     has_many :borrowed_books, MicoseBackend.Book, foreign_key: :borrower_id
-
+    many_to_many :communities, MicoseBackend.Community, join_through: MicoseBackend.Users_Communities
     timestamps()
   end
 
