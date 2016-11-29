@@ -36,31 +36,24 @@ defmodule MicoseBackend.BookController do
   end
 
   def find(conn, %{"tag" => tag}) do
-    # Create a query
-    # example : http://localhost:4000/api/book/find/?tag=Vertigo
-    queryTag = from b in Book,
-              join: bt in MicoseBackend.Books_tags, on: bt.book_id == b.id,
-              inner_join: t in MicoseBackend.Tag, on: bt.tag_id == t.id,
-              select: b,
-              where: t.name == ^tag or b.title == ^tag or b.subtitle == ^tag;
+    query = from b in Book,
+            join: bt in MicoseBackend.Books_tags, on: bt.book_id == b.id,
+            inner_join: t in MicoseBackend.Tag, on: bt.tag_id == t.id,
+            select: b,
+            where: t.name == ^tag or b.title == ^tag or b.subtitle == ^tag;
 
-    #title #subtitle
-    books = Repo.all(queryTag) |> _preloadAll;
+    books = Repo.all(query) |> _preloadAll;
     render(conn, "index.json", books: books)
   end
 
   def find(conn, %{"community" => community}) do
-    # Create a query
-    # example : http://localhost:4000/api/book/find/?tag=Vertigo
-    queryTag = from b in Book,
-              inner_join: u in MicoseBackend.User, on: u.id == b.owner_id,
-              join: uc in MicoseBackend.Users_Communities, on: uc.user_id == u.id,
-              inner_join: c in MicoseBackend.Community, on: uc.community_id == c.id,
-              select: b,
-              where: c.name == ^community;
+    query = from b in Book,
+            inner_join: u in MicoseBackend.User, on: u.id == b.owner_id,
+            join: uc in MicoseBackend.Users_Communities, on: uc.user_id == u.id,
+            select: b,
+            where: uc.community_id == ^community;
 
-    #title #subtitle
-    books = Repo.all(queryTag) |> _preloadAll;
+    books = Repo.all(query) |> _preloadAll;
     render(conn, "index.json", books: books)
   end
 

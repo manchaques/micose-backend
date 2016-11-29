@@ -64,4 +64,14 @@ defmodule MicoseBackend.UserController do
     user = Repo.get_by(User, pseudo: pseudo) |> _preloadAll;
     render(conn, "show.json", user: user)
   end
+
+  def find(conn, %{"community" => community}) do
+      query = from u in User,
+              join: uc in MicoseBackend.Users_Communities, on: uc.user_id == u.id,
+              select: u,
+              where: uc.community_id == ^community;
+
+      users = Repo.all(query) |> _preloadAll;
+      render(conn, "index.json", users: users)
+    end
 end
