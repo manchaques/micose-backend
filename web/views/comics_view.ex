@@ -15,6 +15,6 @@ defmodule MicoseBackend.ComicsView do
       serie: comics.serie,
       title: comics.title,
       tome: comics.tome,
-      book_id: comics.book_id}
+      book: render_one(comics.book, MicoseBackend.BookView, "forTag.json")}
   end
 end
