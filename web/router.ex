@@ -17,6 +17,7 @@ defmodule MicoseBackend.Router do
     pipe_through :api
     resources "/books", BookController, except: [:new, :edit]
     resources "/comics", ComicsController, except: [:new, :edit]
+    resources "/mangas", MangaController, except: [:new, :edit]
     resources "/users", UserController, except: [:new, :edit]
     resources "/classifications", ClassificationController, except: [:new, :edit]
     resources "/tags", TagController, except: [:new, :edit]
