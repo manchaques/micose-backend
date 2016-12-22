@@ -35,17 +35,25 @@ defmodule MicoseBackend.BookController do
     render(conn, "show.json", book: book)
   end
 
-  def findByTag(conn, %{"tag" => tag}) do
-    # Create a query
-    # example : http://localhost:4000/api/book/find/?tag=Vertigo
-    queryTag = from b in Book,
-              join: bt in MicoseBackend.Books_tags, on: bt.book_id == b.id,
-              inner_join: t in MicoseBackend.Tag, on: bt.tag_id == t.id,
-              select: b,
-              where: t.name == ^tag or b.title == ^tag or b.subtitle == ^tag;
+  def find(conn, %{"tag" => tag}) do
+    query = from b in Book,
+            join: bt in MicoseBackend.Books_tags, on: bt.book_id == b.id,
+            inner_join: t in MicoseBackend.Tag, on: bt.tag_id == t.id,
+            select: b,
+            where: t.name == ^tag or b.title == ^tag or b.subtitle == ^tag;
 
-    #title #subtitle
-    books = Repo.all(queryTag) |> _preloadAll;
+    books = Repo.all(query) |> _preloadAll;
+    render(conn, "index.json", books: books)
+  end
+
+  def find(conn, %{"community" => community}) do
+    query = from b in Book,
+            inner_join: u in MicoseBackend.User, on: u.id == b.owner_id,
+            join: uc in MicoseBackend.Users_Communities, on: uc.user_id == u.id,
+            select: b,
+            where: uc.community_id == ^community;
+
+    books = Repo.all(query) |> _preloadAll;
     render(conn, "index.json", books: books)
   end
 

@@ -3,9 +3,15 @@ defmodule MicoseBackend.UserController do
 
   alias MicoseBackend.User
 
+  def _preloadAll(user) do
+    user
+    |> Repo.preload([:communities])
+    |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
+    |> Repo.preload([{:borrowed_books, [:owner, :classification, :tags]}])
+  end
+
   def index(conn, _params) do
-    users = User |> Repo.all |> Repo.preload([:communities]) |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
-      |> Repo.preload([{:borrowed_books, [:owner, :classification, :tags]}])
+    users = User |> Repo.all |> _preloadAll
     render(conn, "index.json", users: users)
   end
 
@@ -26,8 +32,7 @@ defmodule MicoseBackend.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id) |> Repo.preload([:communities]) |> Repo.preload([{:books, [:borrower, :classification, :tags]}])
-      |> Repo.preload([{:borrowed_books, [:owner, :classification, :tags]}])
+    user = Repo.get!(User, id) |> _preloadAll
     render(conn, "show.json", user: user)
   end
 
@@ -54,4 +59,19 @@ defmodule MicoseBackend.UserController do
 
     send_resp(conn, :no_content, "")
   end
+
+  def find(conn, %{"pseudo" => pseudo}) do
+    user = Repo.get_by(User, pseudo: pseudo) |> _preloadAll;
+    render(conn, "show.json", user: user)
+  end
+
+  def find(conn, %{"community" => community}) do
+      query = from u in User,
+              join: uc in MicoseBackend.Users_Communities, on: uc.user_id == u.id,
+              select: u,
+              where: uc.community_id == ^community;
+
+      users = Repo.all(query) |> _preloadAll;
+      render(conn, "index.json", users: users)
+    end
 end

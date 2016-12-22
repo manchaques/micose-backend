@@ -15,15 +15,19 @@ defmodule MicoseBackend.Router do
 
   scope "/api", MicoseBackend do
     pipe_through :api
+
     resources "/books", BookController, except: [:new, :edit]
+    get "/book/find", BookController, :find
     resources "/comics", ComicsController, except: [:new, :edit]
     resources "/mangas", MangaController, except: [:new, :edit]
     resources "/users", UserController, except: [:new, :edit]
+    get "/user/find", UserController, :find
     resources "/book_collections", Book_CollectionController, except: [:new, :edit]
     resources "/classifications", ClassificationController, except: [:new, :edit]
     resources "/tags", TagController, except: [:new, :edit]
-    resources "/communities", CommunityController, except: [:new, :edit]
-    get "/book/find", BookController, :findByTag
+    resources "/communities", CommunityController, except: [:edit]
+    post "/community/join", CommunityController, :join
+
   end
 
   scope "/admin", ExAdmin do

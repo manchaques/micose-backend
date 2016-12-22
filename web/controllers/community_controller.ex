@@ -2,6 +2,7 @@ defmodule MicoseBackend.CommunityController do
   use MicoseBackend.Web, :controller
 
   alias MicoseBackend.Community
+  alias MicoseBackend.Users_Communities
 
   def _preloadAll(community) do
     Repo.preload(community, [:users])
@@ -55,5 +56,21 @@ defmodule MicoseBackend.CommunityController do
     Repo.delete!(community)
 
     send_resp(conn, :no_content, "")
+  end
+
+  def join(conn, %{"community_id" => community_id, "user_id" => user_id} = params) do
+    changeset = Users_Communities.changeset(%Users_Communities{}, params)
+
+    case Repo.insert(changeset) do
+      {:ok, user_community} ->
+        conn
+        |> put_status(:created)
+        |> json(%{community_id: community_id, user_id: user_id})
+
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(MicoseBackend.ChangesetView, "error.json", changeset: changeset)
+    end
   end
 end
