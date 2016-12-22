@@ -60,8 +60,8 @@ defmodule MicoseBackend.UserController do
     send_resp(conn, :no_content, "")
   end
 
-  def find(conn, %{"pseudo" => pseudo}) do
-    user = Repo.get_by(User, pseudo: pseudo) |> _preloadAll;
+  def find(conn, %{"techName" => techName}) do
+    user = Repo.get_by(User, techName: techName) |> _preloadAll;
     render(conn, "show.json", user: user)
   end
 

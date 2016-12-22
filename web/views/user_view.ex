@@ -16,6 +16,8 @@ defmodule MicoseBackend.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       pseudo: user.pseudo,
+      techName: user.techName,
+      avatarUrl: user.avatarUrl,
       books: render_many(user.books, MicoseBackend.BookView, "forOwner.json"),
       borrowedBooks: render_many(user.borrowed_books, MicoseBackend.BookView, "forBorrower.json"),
       communities: render_many(user.communities, MicoseBackend.CommunityView, "community.json")
@@ -24,6 +26,9 @@ defmodule MicoseBackend.UserView do
 
   def render("userLight.json", %{user: user}) do
       %{id: user.id,
-        pseudo: user.pseudo}
+        pseudo: user.pseudo,
+        techName: user.techName,
+        avatarUrl: user.avatarUrl,
+        }
     end
 end
